@@ -100,8 +100,7 @@ function replaceEllipsesWithPaths() {
         var rX = $(this).attr('rx');
         var rY = $(this).attr('ry');
 
-        var convertedPath = 
-        'M' + cX + ', ' + cY + ' m' + (-rX) + ', 0 ' + 'a ' + rX + ', ' + rY + ' 0 1,0 ' + rX*2 + ',0 ' + 'a ' + rX + ', ' + rY + ' 0 1,0 ' + (-rX*2) + ',0 ';
+        var convertedPath = 'M' + cX + ', ' + cY + ' m' + (-rX) + ', 0 ' + 'a ' + rX + ', ' + rY + ' 0 1,0 ' + rX*2 + ',0 ' + 'a ' + rX + ', ' + rY + ' 0 1,0 ' + (-rX*2) + ',0 ';
 
         $(SVG('path'))
         .attr('d', convertedPath)
@@ -117,6 +116,64 @@ function replaceEllipsesWithPaths() {
 }
 
 
+
+
+function replacePolygonsWithPaths() {
+
+    'use strict';
+
+    //REPLACE POLYGONS WITH PATHS SO WE CAN ANIMATE THEM
+    //get all the circles!
+
+    var polygons = $('polygon');
+
+    $.each(polygons, function() {
+
+        var points = $(this).attr('points');
+        var polyPoints = points.split(/[ ,]+/);
+        var endPoint = polyPoints[0] + ', ' + polyPoints[1];
+
+        $(SVG('path'))
+        .attr('d', 'M' + points + ' ' + endPoint)
+        .attr('fill', 'none')
+        .attr('stroke', '#000000')
+        .attr('stroke-width', 1)
+        .insertAfter(this);
+
+    });
+
+    //remove the original polygons
+    $(polygons).remove();
+}
+
+
+
+
+function replacePolylinesWithPaths() {
+
+    'use strict';
+
+    //REPLACE POLYLINES WITH PATHS SO WE CAN ANIMATE THEM
+    //get all the circles!
+
+    var polylines = $('polyline');
+
+    $.each(polylines, function() {
+
+        var points = $(this).attr('points');
+
+        $(SVG('path'))
+        .attr('d', 'M' + points)
+        .attr('fill', 'none')
+        .attr('stroke', '#000000')
+        .attr('stroke-width', 1)
+        .insertAfter(this);
+
+    });
+
+    //remove the original polylines
+    $(polylines).remove();
+}
 
 
 
@@ -155,4 +212,6 @@ function drawSVGPaths() {
 replaceRectsWithPaths();
 replaceEllipsesWithPaths();
 replaceCirclesWithPaths();
+replacePolygonsWithPaths();
+replacePolylinesWithPaths();
 drawSVGPaths();
