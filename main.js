@@ -190,6 +190,9 @@ function drawSVGPaths() {
         //get the total length
         var totalLength = this.getTotalLength();
 
+        $(this).attr('fill', 'none');
+        $(this).attr('stroke', '#000000');
+
         //set PATHs to invisible
         $(this).css({
             'stroke-dashoffset': totalLength,
