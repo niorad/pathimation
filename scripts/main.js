@@ -190,8 +190,6 @@ function drawSVGPaths() {
         //get the total length
         var totalLength = this.getTotalLength();
 
-        $(this).attr('fill', 'none');
-        $(this).attr('stroke', '#000000');
 
         //set PATHs to invisible
         $(this).css({
@@ -205,7 +203,8 @@ function drawSVGPaths() {
             'stroke-dashoffset': 0
             //,'stroke-width': 1
         }, {
-            duration: 2000 //$(this).data('speed')
+            duration: 6000 //$(this).data('speed')
+            ,easing: 'easeOutCirc'
             //,easing: $(this).data('easing')
         });
     });
