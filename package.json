@@ -10,5 +10,9 @@
     "grunt-contrib-sass": "~0.6.0",
     "grunt-contrib-connect": "~0.5.0",
     "grunt-contrib-jshint": "~0.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:niorad/pathimation.git"
   }
 }
