@@ -5,14 +5,22 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),   
 
     jshint: {
+      options: {
+        reporter: require('jshint-stylish')
+      },
       all: [
         'Gruntfile.js',
       '/js/{,*/}*.js'
       ]
     },
 
-    concat: {
 
+    csslint: {
+
+    },
+
+
+    concat: {
       dist: {
         src: [
           'js/libs/jquery.min.js',
@@ -21,8 +29,8 @@ module.exports = function(grunt) {
         ],
         dest: 'js/build/production.js'
       }
-
     },
+
 
     uglify: {
       build: {
@@ -30,6 +38,7 @@ module.exports = function(grunt) {
         dest: 'js/build/production.min.js'
       }
     },
+
 
     imagemin: {
       dynamic: {
@@ -42,6 +51,7 @@ module.exports = function(grunt) {
       }
     },
 
+
     sass: {
       dist: {
         options: {
@@ -52,6 +62,7 @@ module.exports = function(grunt) {
         }
       }
     },
+
 
     watch: {
       livereload: {
@@ -81,6 +92,7 @@ module.exports = function(grunt) {
       }
     },
 
+
     connect: {
       options: {
         port: 9000,
@@ -102,14 +114,7 @@ module.exports = function(grunt) {
   });
 
 
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-connect');
-
+  require('load-grunt-tasks')(grunt);
 
   grunt.registerTask('serve', function (target) {
     grunt.task.run([
@@ -118,6 +123,13 @@ module.exports = function(grunt) {
     ]);
   });
 
+
   grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'imagemin', 'sass']);
 
+
+
 };
+
+
+
+

@@ -73,7 +73,6 @@ function replaceCirclesWithPaths() {
 
 
 
-
 function replaceEllipsesWithPaths() {
 
     'use strict';
@@ -154,7 +153,6 @@ function replacePolylinesWithPaths() {
 }
 
 
-
 function drawSVGPaths() {
 
     'use strict';
@@ -179,7 +177,7 @@ function drawSVGPaths() {
             'stroke-dashoffset': 0
         }, {
             duration: 6000 //$(this).data('speed')
-            ,easing: 'easeOutCirc'
+            ,easing: 'linear'
         });
     });
 }
