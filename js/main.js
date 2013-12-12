@@ -7,7 +7,6 @@
 
 function SVG(tag) {
     'use strict';
-
     return document.createElementNS('http://www.w3.org/2000/svg', tag);
 }
 
@@ -17,9 +16,6 @@ function replaceRectsWithPaths() {
 
     'use strict';
 
-    //REPLACE RECTS WITH PATHS SO WE CAN ANIMATE THEM
-
-    //get all the rects!
     var rects = $('rect');
 
     $.each(rects, function() {
@@ -35,16 +31,14 @@ function replaceRectsWithPaths() {
 
         $(SVG('path'))
         .attr('d', convertedPath)
-        .attr('fill', 'none')
-        .attr('stroke', '#000000')
-        .attr('stroke-width', 1)
+        .attr('fill', $(this).attr('fill'))
+        .attr('stroke', $(this).attr('stroke'))
+        .attr('stroke-width', $(this).attr('stroke-width'))
         .insertAfter(this);
 
     });
 
-    //remove the original rects
     $(rects).remove();
-
 }
 
 
@@ -54,9 +48,6 @@ function replaceCirclesWithPaths() {
 
     'use strict';
 
-    //REPLACE CIRCLES WITH PATHS SO WE CAN ANIMATE THEM
-
-    //get all the circles!
     var circles = $('circle');
 
     $.each(circles, function() {
@@ -70,14 +61,13 @@ function replaceCirclesWithPaths() {
 
         $(SVG('path'))
         .attr('d', convertedPath)
-        .attr('fill', 'none')
-        .attr('stroke', '#000000')
-        .attr('stroke-width', 1)
+        .attr('fill', $(this).attr('fill'))
+        .attr('stroke', $(this).attr('stroke'))
+        .attr('stroke-width', $(this).attr('stroke-width'))
         .insertAfter(this);
 
     });
 
-    //remove the original rects
     $(circles).remove();
 }
 
@@ -88,9 +78,6 @@ function replaceEllipsesWithPaths() {
 
     'use strict';
 
-    //REPLACE ELLIPSES WITH PATHS SO WE CAN ANIMATE THEM
-
-    //get all the circles!
     var ellipses = $('ellipse');
 
     $.each(ellipses, function() {
@@ -104,14 +91,13 @@ function replaceEllipsesWithPaths() {
 
         $(SVG('path'))
         .attr('d', convertedPath)
-        .attr('fill', 'none')
-        .attr('stroke', '#000000')
-        .attr('stroke-width', 1)
+        .attr('fill', $(this).attr('fill'))
+        .attr('stroke', $(this).attr('stroke'))
+        .attr('stroke-width', $(this).attr('stroke-width'))
         .insertAfter(this);
 
     });
 
-    //remove the original ellipses
     $(ellipses).remove();
 }
 
@@ -121,9 +107,6 @@ function replaceEllipsesWithPaths() {
 function replacePolygonsWithPaths() {
 
     'use strict';
-
-    //REPLACE POLYGONS WITH PATHS SO WE CAN ANIMATE THEM
-    //get all the circles!
 
     var polygons = $('polygon');
 
@@ -135,14 +118,13 @@ function replacePolygonsWithPaths() {
 
         $(SVG('path'))
         .attr('d', 'M' + points + ' ' + endPoint)
-        .attr('fill', 'none')
-        .attr('stroke', '#000000')
-        .attr('stroke-width', 1)
+        .attr('fill', $(this).attr('fill'))
+        .attr('stroke', $(this).attr('stroke'))
+        .attr('stroke-width', $(this).attr('stroke-width'))
         .insertAfter(this);
 
     });
 
-    //remove the original polygons
     $(polygons).remove();
 }
 
@@ -153,9 +135,6 @@ function replacePolylinesWithPaths() {
 
     'use strict';
 
-    //REPLACE POLYLINES WITH PATHS SO WE CAN ANIMATE THEM
-    //get all the circles!
-
     var polylines = $('polyline');
 
     $.each(polylines, function() {
@@ -164,14 +143,13 @@ function replacePolylinesWithPaths() {
 
         $(SVG('path'))
         .attr('d', 'M' + points)
-        .attr('fill', 'none')
-        .attr('stroke', '#000000')
-        .attr('stroke-width', 1)
+        .attr('fill', $(this).attr('fill'))
+        .attr('stroke', $(this).attr('stroke'))
+        .attr('stroke-width', $(this).attr('stroke-width'))
         .insertAfter(this);
 
     });
 
-    //remove the original polylines
     $(polylines).remove();
 }
 
@@ -181,7 +159,6 @@ function drawSVGPaths() {
 
     'use strict';
 
-    //grab all PATHs from an SVG-Element
     var paths = $('path');
 
     //for each PATH..
@@ -195,17 +172,14 @@ function drawSVGPaths() {
         $(this).css({
             'stroke-dashoffset': totalLength,
             'stroke-dasharray': totalLength + ' ' + totalLength
-            //,'stroke-width': 100
         });
 
         //animate
         $(this).animate({
             'stroke-dashoffset': 0
-            //,'stroke-width': 1
         }, {
             duration: 6000 //$(this).data('speed')
             ,easing: 'easeOutCirc'
-            //,easing: $(this).data('easing')
         });
     });
 }

@@ -15,7 +15,8 @@ module.exports = function(grunt) {
 
       dist: {
         src: [
-          'js/libs/*.js',
+          'js/libs/jquery.min.js',
+          'js/libs/jquery.easing.1.3.js',
           'js/main.js'
         ],
         dest: 'js/build/production.js'
